@@ -1,0 +1,21 @@
+apiVersion: kops.k8s.io/v1alpha2
+kind: InstanceGroup
+metadata:
+  creationTimestamp: "2019-12-30T16:00:34Z"
+  generation: 3
+  labels:
+    kops.k8s.io/cluster: kopscluster.researchkernel.org
+  name: master-us-east-1c
+spec:
+  image: kope.io/k8s-1.15-debian-stretch-amd64-hvm-ebs-2019-09-26
+  machineType: m3.medium
+  maxPrice: "0.0125"
+  maxSize: 1
+  minSize: 1
+  nodeLabels:
+    kops.k8s.io/instancegroup: master-us-east-1c
+  role: Master
+  rootVolumeSize: 10
+  rootVolumeType: gp2
+  subnets:
+  - us-east-1c

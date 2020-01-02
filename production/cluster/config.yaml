@@ -1,0 +1,79 @@
+apiVersion: kops.k8s.io/v1alpha2
+kind: Cluster
+metadata:
+  creationTimestamp: "2019-12-30T16:00:32Z"
+  name: kopscluster.researchkernel.org
+spec:
+  api:
+    dns: {}
+  authorization:
+    rbac: {}
+  channel: stable
+  cloudProvider: aws
+  configBase: s3://researchkernel-kubernetes-state-store/kopscluster.researchkernel.org
+  etcdClusters:
+  - cpuRequest: 200m
+    etcdMembers:
+    - instanceGroup: master-us-east-1a
+      name: a
+    - instanceGroup: master-us-east-1c
+      name: c
+    - instanceGroup: master-us-east-1d
+      name: d
+    memoryRequest: 100Mi
+    name: main
+  - cpuRequest: 100m
+    etcdMembers:
+    - instanceGroup: master-us-east-1a
+      name: a
+    - instanceGroup: master-us-east-1c
+      name: c
+    - instanceGroup: master-us-east-1d
+      name: d
+    memoryRequest: 100Mi
+    name: events
+  iam:
+    allowContainerRegistry: true
+    legacy: false
+  kubelet:
+    anonymousAuth: false
+  kubernetesApiAccess:
+  - 0.0.0.0/0
+  kubernetesVersion: 1.15.6
+  masterPublicName: api.kopscluster.researchkernel.org
+  networkCIDR: 172.20.0.0/16
+  networking:
+    kubenet: {}
+  nonMasqueradeCIDR: 100.64.0.0/10
+  sshAccess:
+  - 0.0.0.0/0
+  subnets:
+  - cidr: 172.20.32.0/19
+    name: us-east-1a
+    type: Public
+    zone: us-east-1a
+  - cidr: 172.20.64.0/19
+    name: us-east-1b
+    type: Public
+    zone: us-east-1b
+  - cidr: 172.20.96.0/19
+    name: us-east-1c
+    type: Public
+    zone: us-east-1c
+  - cidr: 172.20.128.0/19
+    name: us-east-1d
+    type: Public
+    zone: us-east-1d
+  - cidr: 172.20.160.0/19
+    name: us-east-1e
+    type: Public
+    zone: us-east-1e
+  - cidr: 172.20.192.0/19
+    name: us-east-1f
+    type: Public
+    zone: us-east-1f
+  topology:
+    dns:
+      type: Public
+    masters: public
+    nodes: public
